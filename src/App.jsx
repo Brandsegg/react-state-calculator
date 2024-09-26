@@ -1,56 +1,95 @@
 import "./App.css"
+import { useState } from "react"
 
 function App() {
+
+  const [firstNum, setFirstNum] = useState(0)
+  const [secondNum, setSecondNum] = useState(0)
+  const [operator, setOperator] = useState('+')
+  const [result, setResult] = useState(0)
+
+
+  const clickedFirstNum = (num) => {
+    setFirstNum(num)
+    return num
+  }
+
+  const clickedSecondNum = (num) => {
+    setSecondNum(num)
+    return num
+  }
+
+  const clickedOperator = (op) => {
+    setOperator(op)
+  }
+
+  const calculate = () => {
+    let ans = 0
+    if(operator  === '+'){
+      ans = firstNum + secondNum
+    }
+    else if(operator  === '-'){
+      ans = firstNum - secondNum
+    }
+    else if(operator  === '*'){
+      ans = firstNum * secondNum
+    }
+    else if(operator  === '÷'){
+      ans = firstNum / secondNum
+    }
+    setResult(ans)
+  }
+
 
   return (
     <div className="calculator">
       <div className="panel">
-        <p>0</p>
+        <p>{firstNum}</p>
         <div className="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>Clear</button>
+          <button onClick={() => clickedFirstNum(1)}>1</button>
+          <button onClick={() => clickedFirstNum(2)}>2</button>
+          <button onClick={() => clickedFirstNum(3)}>3</button>
+          <button onClick={() => clickedFirstNum(4)}>4</button>
+          <button onClick={() => clickedFirstNum(5)}>5</button>
+          <button onClick={() => clickedFirstNum(6)}>6</button>
+          <button onClick={() => clickedFirstNum(7)}>7</button>
+          <button onClick={() => clickedFirstNum(8)}>8</button>
+          <button onClick={() => clickedFirstNum(9)}>9</button>
+          <button onClick={() => clickedFirstNum(0)}>0</button>
+          <button onClick={() => clickedFirstNum(0)}>Clear</button>
         </div>
       </div>
 
       <div className="panel">
-        <p>+</p>
+        <p>{operator}</p>
         <div className="numbers">
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>÷</button>
+          <button onClick={() => clickedOperator('+')}>+</button>
+          <button onClick={() => clickedOperator('-')}>-</button>
+          <button onClick={() => clickedOperator('*')}>*</button>
+          <button onClick={() => clickedOperator('÷')}>÷</button>
         </div>
       </div>
 
       <div className="panel">
-        <p>0</p>
+        <p>{secondNum}</p>
         <div className="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>Clear</button>
+          <button onClick={() => clickedSecondNum(1)}>1</button>
+          <button onClick={() => clickedSecondNum(2)}>2</button>
+          <button onClick={() => clickedSecondNum(3)}>3</button>
+          <button onClick={() => clickedSecondNum(4)}>4</button>
+          <button onClick={() => clickedSecondNum(5)}>5</button>
+          <button onClick={() => clickedSecondNum(6)}>6</button>
+          <button onClick={() => clickedSecondNum(7)}>7</button>
+          <button onClick={() => clickedSecondNum(8)}>8</button>
+          <button onClick={() => clickedSecondNum(9)}>9</button>
+          <button onClick={() => clickedSecondNum(0)}>0</button>
+          <button onClick={() => clickedSecondNum(0)}>Clear</button>
         </div>
       </div>
       <div className="panel answer">
-        <p>0</p>
+        <p>{result}</p>
         <div>
-          <button>=</button>
+          <button onClick={calculate}>=</button>
         </div>
       </div>
     </div>
