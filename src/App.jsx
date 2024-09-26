@@ -10,12 +10,18 @@ function App() {
 
 
   const clickedFirstNum = (num) => {
-    setFirstNum(num)
+    if(firstNum === 0 && num === 0){
+      setFirstNum(0)
+    }
+    setFirstNum(Number(`${firstNum}${num}`))
     return num
   }
 
   const clickedSecondNum = (num) => {
-    setSecondNum(num)
+    if(secondNum === 0 && num === 0){
+      setSecondNum(0)
+    }
+    setSecondNum(Number(`${secondNum}${num}`))
     return num
   }
 
