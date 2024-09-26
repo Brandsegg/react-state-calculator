@@ -7,10 +7,14 @@ function App() {
   const [secondNum, setSecondNum] = useState(0)
   const [operator, setOperator] = useState('+')
   const [result, setResult] = useState(0)
+  const [storedAnswer, setStoredAnswer] = useState(0)
 
 
   const clickedFirstNum = (num) => {
     if(firstNum === 0 && num === 0){
+      setFirstNum(0)
+    }
+    if(num === -1){
       setFirstNum(0)
     }
     setFirstNum(Number(`${firstNum}${num}`))
@@ -19,6 +23,9 @@ function App() {
 
   const clickedSecondNum = (num) => {
     if(secondNum === 0 && num === 0){
+      setSecondNum(0)
+    }
+    if(num === -1){
       setSecondNum(0)
     }
     setSecondNum(Number(`${secondNum}${num}`))
@@ -46,6 +53,18 @@ function App() {
     setResult(ans)
   }
 
+  const store = () => {
+    setStoredAnswer(result)
+  }
+  const clear = (index) => {
+    if(index === 1){
+      setFirstNum(0)
+    }
+    if(index === 2){
+      setSecondNum(0)
+    }
+  }
+
 
   return (
     <div className="calculator">
@@ -62,7 +81,8 @@ function App() {
           <button onClick={() => clickedFirstNum(8)}>8</button>
           <button onClick={() => clickedFirstNum(9)}>9</button>
           <button onClick={() => clickedFirstNum(0)}>0</button>
-          <button onClick={() => clickedFirstNum(0)}>Clear</button>
+          <button onClick={() => clear(1)}>Clear</button>
+          <button onClick={() => {clickedFirstNum(storedAnswer)}}>Recall</button>
         </div>
       </div>
 
@@ -89,13 +109,15 @@ function App() {
           <button onClick={() => clickedSecondNum(8)}>8</button>
           <button onClick={() => clickedSecondNum(9)}>9</button>
           <button onClick={() => clickedSecondNum(0)}>0</button>
-          <button onClick={() => clickedSecondNum(0)}>Clear</button>
+          <button onClick={() => clear(2)}>Clear</button>
+          <button onClick={() => {clickedSecondNum(storedAnswer)}}>Recall</button>
         </div>
       </div>
       <div className="panel answer">
         <p>{result}</p>
         <div>
           <button onClick={calculate}>=</button>
+          <button onClick={store}>Store</button>
         </div>
       </div>
     </div>
